@@ -1,0 +1,74 @@
+html, body {
+  min-height: 100vh;
+}
+
+body {
+  background-color: #B3A88F;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.task-title {
+  display: block;
+  font-weight: 400;
+  padding-top: 5px;
+  max-width: 900px;
+  overflow: hidden;
+}
+
+.task-title--done {
+  text-decoration: line-through;
+  color: #b4b6b4;
+}
+
+.task-item__buttons {
+  padding-left: 1rem;
+  display: flex;
+  max-width: 400px;
+  column-gap: 10px;
+}
+
+.empty-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
+.empty-list__title {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.btn-action {
+  background-color: #d6dcd6;
+  padding: 8px 10px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 5px;
+  transition: opacity 0.1s ease-in;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-action:hover {
+  background-color: #d6dcd6;
+  opacity: 1;
+}
+
+.btn-action img {
+  pointer-events: none;
+}
+
+.header-custome{
+  padding-left: 1rem;
+}
+
+#tasksList li{
+  align-items: center;
+}
