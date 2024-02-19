@@ -23,6 +23,8 @@ tasksList.addEventListener('click', deleteTask)
 
 tasksList.addEventListener('click', doneTask)
 
+tasksList.addEventListener('click', editTask);
+
 
 
 // Functions
@@ -90,6 +92,29 @@ function doneTask(event){
     saveToLS()
 }   
 
+
+function editTask(event) {
+    if (event.target.dataset.action !== 'edit') return;
+
+    const parentNode = event.target.closest('li');
+    const taskId = Number(parentNode.id);
+    const task = tasks.find(task => task.id === taskId);
+
+    const newText = prompt('Enter the new task text:', task.text);
+
+    if (newText !== null && newText.trim() !== '') {
+        task.text = newText.trim();
+
+        tasks = tasks.map(t => (t.id === taskId ? task : t));
+
+        saveToLS();
+
+        const taskTitle = parentNode.querySelector('.task-title');
+        taskTitle.textContent = task.text;
+    }
+}
+
+
 function checkEmptyList(){
     if(tasks.length === 0){
         const emptyListHTML = `
@@ -117,6 +142,9 @@ function renderTask(task){
         <li id="${task.id}" class="list-group-item d-flex justify-content-between task-item">
             <span class="${cssClass}">${task.text}</span>
             <div class="task-item__buttons">
+                <button type="button" data-action="edit" class="btn-action">
+                    <img src="./img/edit.svg" alt="Edit" width="16" height="16">
+                </button>
                 <button type="button" data-action="done" class="btn-action">
                     <img src="./img/tick.svg" alt="Done" width="16" height="16">
                 </button>
@@ -128,3 +156,42 @@ function renderTask(task){
     
     tasksList.insertAdjacentHTML('beforeend', taskHTML )
 }
+
+
+const backgroundColorInput = document.querySelector('#background-color');
+const colorLabel = document.querySelector('#color-label');
+const container = document.querySelector('body');
+
+let savedColor = localStorage.getItem('backgroundColor');
+if (savedColor) {
+    container.style.backgroundColor = savedColor;
+    colorLabel.style.color = isColorDark(savedColor) ? 'white' : 'black';
+}
+
+backgroundColorInput.addEventListener('input', function() {
+    const selectedColor = backgroundColorInput.value;
+    
+    container.style.backgroundColor = selectedColor;
+    localStorage.setItem('backgroundColor', selectedColor);
+
+    const isDarkColor = isColorDark(selectedColor);
+   
+    colorLabel.style.color = isDarkColor ? 'white' : 'black';
+});
+
+
+function isColorDark(color) {
+    const rgb = hexToRgb(color);
+    const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+    return brightness < 128;
+}
+
+
+function hexToRgb(hex) {
+    const bigint = parseInt(hex.substring(1), 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return { r, g, b };
+}
+
