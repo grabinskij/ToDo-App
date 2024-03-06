@@ -1,17 +1,16 @@
 const form = document.querySelector('#form')
-const taskInput = document.querySelector('#taskInput') 
-const tasksList = document.querySelector('#tasksList') 
-const emptyList = document.querySelector('#emptyList') 
+const taskInput = document.querySelector('#taskInput')
+const tasksList = document.querySelector('#tasksList')
+const emptyList = document.querySelector('#emptyList')
 
 
 let tasks = []
 
 
-if(localStorage.getItem('tasks')){
-   tasks = JSON.parse(localStorage.getItem('tasks'))
-   tasks.forEach((task) => renderTask(task))
+if (localStorage.getItem('tasks')) {
+    tasks = JSON.parse(localStorage.getItem('tasks'))
+    tasks.forEach((task) => renderTask(task))
 }
-
 
 
 checkEmptyList()
@@ -26,10 +25,9 @@ tasksList.addEventListener('click', doneTask)
 tasksList.addEventListener('click', editTask);
 
 
-
 // Functions
 
-function addTask(event){
+function addTask(event) {
     event.preventDefault()
     const taskText = taskInput.value
 
@@ -53,34 +51,34 @@ function addTask(event){
 
 }
 
-function deleteTask(event){
-    if(event.target.dataset.action !== 'delete') return
+function deleteTask(event) {
+    if (event.target.dataset.action !== 'delete') return
 
     const parentNode = event.target.closest('li')
-    
+
     const id = Number(parentNode.id)
 
-    tasks = tasks.filter(function(task){
-        if (task.id === id){
+    tasks = tasks.filter(function (task) {
+        if (task.id === id) {
             return false
-        }else{
+        } else {
             return true
         }
     })
 
     saveToLS()
-    
+
     parentNode.remove()
 
     checkEmptyList()
 
 }
 
-function doneTask(event){
-    if(event.target.dataset.action !== 'done') return
+function doneTask(event) {
+    if (event.target.dataset.action !== 'done') return
 
     const parentNode = event.target.closest('li')
-    const taskTitle =  parentNode.querySelector('.task-title')
+    const taskTitle = parentNode.querySelector('.task-title')
     taskTitle.classList.toggle('task-title--done')
 
     const id = Number(parentNode.id)
@@ -88,9 +86,9 @@ function doneTask(event){
     const task = tasks.find((task) => task.id === id)
 
     task.done = !task.done
-    
+
     saveToLS()
-}   
+}
 
 
 function editTask(event) {
@@ -115,8 +113,8 @@ function editTask(event) {
 }
 
 
-function checkEmptyList(){
-    if(tasks.length === 0){
+function checkEmptyList() {
+    if (tasks.length === 0) {
         const emptyListHTML = `
             <li id="emptyList" class="list-group-item empty-list">
                 <div class="empty-list__title">You have no tasks</div>
@@ -125,17 +123,17 @@ function checkEmptyList(){
         tasksList.insertAdjacentHTML('afterbegin', emptyListHTML)
     }
 
-    if(tasks.length > 0){
+    if (tasks.length > 0) {
         const emptyListEl = document.querySelector('#emptyList')
         emptyListEl ? emptyListEl.remove() : null
     }
 }
 
-function saveToLS(){
+function saveToLS() {
     localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
-function renderTask(task){
+function renderTask(task) {
     cssClass = task.done ? "task-title task-title--done" : "task-title"
 
     const taskHTML = `
@@ -153,8 +151,8 @@ function renderTask(task){
                 </button>
             </div>
         </li>`
-    
-    tasksList.insertAdjacentHTML('beforeend', taskHTML )
+
+    tasksList.insertAdjacentHTML('beforeend', taskHTML)
 }
 
 
@@ -168,14 +166,14 @@ if (savedColor) {
     colorLabel.style.color = isColorDark(savedColor) ? 'white' : 'black';
 }
 
-backgroundColorInput.addEventListener('input', function() {
+backgroundColorInput.addEventListener('input', function () {
     const selectedColor = backgroundColorInput.value;
-    
+
     container.style.backgroundColor = selectedColor;
     localStorage.setItem('backgroundColor', selectedColor);
 
     const isDarkColor = isColorDark(selectedColor);
-   
+
     colorLabel.style.color = isDarkColor ? 'white' : 'black';
 });
 
@@ -192,6 +190,28 @@ function hexToRgb(hex) {
     const r = (bigint >> 16) & 255;
     const g = (bigint >> 8) & 255;
     const b = bigint & 255;
-    return { r, g, b };
+    return {r, g, b};
 }
 
+
+//Cookie banner language changer
+
+window.addEventListener('DOMContentLoaded', () => {
+
+    const cookieGermanBtn = document.getElementById('cookieGermanBtn');
+    const cookieEnglishBtn = document.getElementById('cookieEnglishBtn');
+    const cookieEnglish = document.getElementById('cookieEnglish');
+    const cookieGerman = document.getElementById('cookieGerman');
+
+
+    cookieGermanBtn.addEventListener('click', () => {
+        cookieEnglish.style.display = 'block';
+        cookieGerman.style.display = 'none';
+    });
+
+    cookieEnglishBtn.addEventListener('click', () => {
+        cookieGerman.style.display = 'block';
+        cookieEnglish.style.display = 'none';
+    });
+
+});
