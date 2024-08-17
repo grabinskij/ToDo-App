@@ -2,13 +2,13 @@
 
 Welcome to the Todo App repository! This project is a simple, yet functional application designed to help you manage your tasks efficiently. It provides a clean and intuitive interface for adding, editing, and tracking your to-do items.
 
-<br><br>
+<br>
 
 ## 🌟 Overview
 
 The Todo App is a straightforward task management tool that allows users to keep track of their tasks and stay organized. It supports features such as task addition, completion marking, and deletion, making it a versatile tool for both personal and professional use.
 
-<br><br>
+<br>
 
 ## ⭐ Features
 
@@ -17,7 +17,7 @@ The Todo App is a straightforward task management tool that allows users to keep
 - **Delete Tasks**: Remove tasks from your list when they are no longer needed.
 - **Edit Tasks**: Modify task details to keep your list up-to-date.
 
-<br><br>
+<br>
 
 ## 🛠️ Tech Stack
 
@@ -26,13 +26,13 @@ The Todo App is a straightforward task management tool that allows users to keep
 - **SCSS**: A CSS preprocessor used to write cleaner and more maintainable CSS code.
 - **JavaScript**: Adding dynamic functionality and interactivity to the portfolio.
 
-<br><br>
+<br>
 
 ## 📝 License
 
 This project is open-source and available under the MIT License.
 
-<br><br>
+<br>
 
 ## 🔥 How to Run Locally
 
@@ -50,7 +50,7 @@ To view the portfolio on your local machine:
    ```bash
    open index.html
 
-<br><br>
+<br>
 
 ## 🤝 Let's Connect
 
