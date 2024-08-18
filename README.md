@@ -36,7 +36,7 @@ This project is open-source and available under the MIT License.
 
 ## 🔥 How to Run Locally
 
-To view the portfolio on your local machine:
+To view the project on your local machine:
 
 1. **Clone this repository**:
    ```bash
