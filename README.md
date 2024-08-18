@@ -1,6 +1,6 @@
 # 🚀 Todo App
 
-Welcome to the Todo App repository! This project is a simple, yet functional application designed to help you manage your tasks efficiently. It provides a clean and intuitive interface for adding, editing, and tracking your to-do items.
+Welcome to the **Todo App** repository! This project is a simple, yet functional application designed to help you manage your tasks efficiently. It provides a clean and intuitive interface for adding, editing, and tracking your to-do items.
 
 <br>
 
